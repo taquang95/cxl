@@ -45,9 +45,13 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           throw new Error(data.error || "Gửi đăng ký không thành công. Quý khách vui lòng thử lại sau.");
         }
 
-        const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
-        existingLeads.push(payload);
-        localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        try {
+          const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
+          existingLeads.push(payload);
+          localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        } catch (storageErr) {
+          console.warn("localStorage is not accessible in this context:", storageErr);
+        }
 
         setIsSubmitted(true);
       } catch (err: any) {

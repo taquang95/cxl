@@ -62,9 +62,13 @@ export default function BookingModal({
         }
 
         // Store locally
-        const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
-        existingLeads.push(payload);
-        localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        try {
+          const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
+          existingLeads.push(payload);
+          localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        } catch (storageErr) {
+          console.warn("localStorage is not accessible in this context:", storageErr);
+        }
 
         setIsSubmitted(true);
       } catch (err: any) {

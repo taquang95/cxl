@@ -14,6 +14,8 @@ export default function Facilities() {
     setActiveLightbox((prev) => (prev === null || prev === FACILITIES.length - 1 ? 0 : prev + 1));
   };
 
+  const selectedFacility = activeLightbox !== null ? FACILITIES[activeLightbox] : null;
+
   return (
     <section id="tienich" className="py-20 bg-gray-50 text-[#131E1B] overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -120,8 +122,8 @@ export default function Facilities() {
               {/* Image Frame */}
               <div className="relative overflow-hidden bg-neutral-900 rounded-xl max-h-[70vh] flex items-center justify-center p-2">
                 <img
-                  src={FACILITIES[activeLightbox].image}
-                  alt={FACILITIES[activeLightbox].title}
+                  src={selectedFacility?.image || ""}
+                  alt={selectedFacility?.title || ""}
                   className="max-h-[60vh] object-contain w-auto select-none"
                   referrerPolicy="no-referrer"
                 />
@@ -147,7 +149,7 @@ export default function Facilities() {
               <div className="p-4 md:p-6 text-center bg-gray-950 border-t border-gray-800">
                 <span className="text-xs text-[#CB7037] uppercase font-bold tracking-widest">Chi tiết thiết kế tiện ích</span>
                 <h4 className="text-lg md:text-xl font-serif font-bold text-white mt-1">
-                  {FACILITIES[activeLightbox].title}
+                  {selectedFacility?.title || ""}
                 </h4>
                 <p className="text-xs text-gray-400 mt-1 max-w-xl mx-auto leading-relaxed">
                   Thiết kế được thực hiện bởi tập đoàn GroupGSA Australia cùng các đối tác nội thất danh tiếng chuẩn mực Tây Âu, nâng tầm giá trị đẳng cấp sống thượng lưu.

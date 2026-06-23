@@ -44,9 +44,13 @@ export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
           throw new Error(data.error || "Có lỗi bất ngờ xảy ra khi gửi đăng ký.");
         }
 
-        const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
-        existingLeads.push(payload);
-        localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        try {
+          const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
+          existingLeads.push(payload);
+          localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
+        } catch (storageErr) {
+          console.warn("localStorage is not accessible in this context:", storageErr);
+        }
 
         setIsSubmitted(true);
         setName("");
