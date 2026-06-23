@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Masterise Homes Nguyen Trai",
+  "description": "Trang giới thiệu và đặt chỗ (booking) sớm dự án căn hộ cao cấp Masterise Homes 233-235 Nguyễn Trãi - Hà Nội Seasons Garden",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
