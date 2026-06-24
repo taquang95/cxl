@@ -13,6 +13,28 @@ export default function SalesPolicyAndContact() {
               <h3 className="text-xl md:text-2xl font-serif font-bold text-[#2A3A35] uppercase tracking-wide border-l-4 border-[#CB7037] pl-3 mb-6">
                 Chính sách bán hàng đặc quyền
               </h3>
+
+              {/* Banner ảnh chính sách bán hàng mới */}
+              <div className="mb-6 rounded-2xl overflow-hidden border border-gray-200/80 shadow-md bg-white p-1.5 group cursor-pointer relative">
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider font-sans z-10 flex items-center gap-1 opacity-90">
+                  <span>Xem ảnh rõ nét</span>
+                  <span>🔍</span>
+                </div>
+                <a 
+                  href="https://i.postimg.cc/N0172R5j/chinh-sach-ban-hang-hsg.jpg" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block overflow-hidden rounded-xl"
+                >
+                  <img
+                    src="https://i.postimg.cc/N0172R5j/chinh-sach-ban-hang-hsg.jpg"
+                    alt="Chính sách bán hàng Hà Nội Seasons Garden"
+                    className="w-full h-auto object-cover rounded-xl transition-transform duration-700 group-hover:scale-[1.02]"
+                    referrerPolicy="no-referrer"
+                  />
+                </a>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Policy 1: Lại suất hỗ trợ 70% */}
                 <div className="p-5 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-2">
@@ -90,6 +112,16 @@ export default function SalesPolicyAndContact() {
                       <p className="text-xl text-[#2A3A35] font-serif font-bold tracking-wide mt-0.5">{PROJECT_DETAILS.contactPerson}</p>
                     </div>
                     <div className="h-2.5 w-2.5 rounded-full bg-red-500 animate-ping shrink-0" />
+                  </div>
+
+                  {/* Ảnh đại diện tư vấn */}
+                  <div className="overflow-hidden rounded-xl border border-gray-100 shadow-xs">
+                    <img
+                      src="https://i.postimg.cc/k5Kp53nM/anh-ta-dinh.jpg"
+                      alt="Đại diện tư vấn Hà Nội Seasons Garden"
+                      className="w-full h-auto object-cover"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
                   
                   <div className="space-y-4">
