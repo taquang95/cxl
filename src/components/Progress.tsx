@@ -3,7 +3,11 @@ import { TECHNICAL_PROGRESS, BROCHURES } from "../data";
 import { Eye, Calendar, BookOpen, AlertCircle, ChevronRight, ChevronLeft, Compass } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function Progress() {
+interface ProgressProps {
+  onOpenBooking?: (apartmentType: string) => void;
+}
+
+export default function Progress({ onOpenBooking }: ProgressProps) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [lightboxTitle, setLightboxTitle] = useState("");
   const [activeCatalogPage, setActiveCatalogPage] = useState(0);
@@ -169,6 +173,33 @@ export default function Progress() {
                 Các bản vẽ mặt cắt tháp T1, T2 và cơ chế bàn giao hệ thống lọc không khí, bếp điện kháng khuẩn đều được in đậm trong cuốn Brochure đầy đủ này.
               </div>
             </div>
+
+            {/* Shaking Attention-Grabbing Call-To-Action Button */}
+            <motion.button
+              onClick={() => {
+                if (onOpenBooking) {
+                  onOpenBooking("Tải Bảng Giá Chi Tiết");
+                }
+              }}
+              animate={{
+                x: [0, -4, 4, -4, 4, -2, 2, 0],
+                scale: [1, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1],
+              }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                repeatDelay: 3.5,
+                ease: "easeInOut"
+              }}
+              className="w-full mt-5 py-4 px-6 bg-[#CB7037] hover:bg-[#B35F2B] text-white font-sans font-bold text-sm tracking-wider rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 cursor-pointer border border-[#CB7037]/20 group"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+              </span>
+              <span>TẢI XUỐNG BẢNG GIÁ CHI TIẾT</span>
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">📥</span>
+            </motion.button>
           </div>
 
         </div>

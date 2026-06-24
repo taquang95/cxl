@@ -199,18 +199,14 @@ export const TECHNICAL_PROGRESS: ProgressItem[] = [
 export const BROCHURES: BrochurePage[] = [
   {
     page: 1,
-    image: "https://w.ladicdn.com/s1550x1700/60d9ed782bd66f0013900826/z7820205757390_ad411f9a08f3aec73d76139c81e36038-20260513143142-pk4od.jpg"
+    image: "https://i.postimg.cc/J046KsjJ/bang-gia-cao-xa-la-1.png"
   },
   {
     page: 2,
-    image: "https://w.ladicdn.com/s1550x1700/60d9ed782bd66f0013900826/z7820205753018_dfa4a6249b0996cf87d8a6470208dacd-20260513143246-c6lbp.jpg"
+    image: "https://i.postimg.cc/D0yj5S1L/bang-gia-cao-xa-la-l2.png"
   },
   {
     page: 3,
-    image: "https://w.ladicdn.com/s1550x1950/60d9ed782bd66f0013900826/z7820205761124_c55817e24789edc95fdf18309d9a0049-20260513143502--acv1.jpg"
-  },
-  {
-    page: 4,
-    image: "https://w.ladicdn.com/s1550x2150/60d9ed782bd66f0013900826/z7820205764424_ebf7b48b0f0cc69939cd61a1d1d7aec9-20260513143747-49w-p.jpg"
+    image: "https://i.postimg.cc/k5Kp53nM/anh-ta-dinh.jpg"
   }
 ];

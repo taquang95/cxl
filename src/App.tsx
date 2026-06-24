@@ -7,6 +7,7 @@ import MasterPlan from "./components/MasterPlan";
 import Products from "./components/Products";
 import Facilities from "./components/Facilities";
 import Progress from "./components/Progress";
+import SalesPolicyAndContact from "./components/SalesPolicyAndContact";
 import Footer from "./components/Footer";
 import FloatingWidgets from "./components/FloatingWidgets";
 import BookingModal from "./components/BookingModal";
@@ -54,7 +55,10 @@ export default function App() {
         <Facilities />
 
         {/* Progress & Document Section */}
-        <Progress />
+        <Progress onOpenBooking={handleOpenBooking} />
+
+        {/* Sales Policies & Direct Contact Board Section */}
+        <SalesPolicyAndContact />
       </main>
 
       {/* Structured Footer */}

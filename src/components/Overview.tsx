@@ -65,7 +65,7 @@ export default function Overview({ onOpenBooking }: OverviewProps) {
             <div className="absolute -inset-2 bg-gradient-to-r from-[#CB7037] to-[#D4AF37] rounded-3xl blur opacity-15" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img
-                src="https://w.ladicdn.com/s950x800/60d9ed782bd66f0013900826/z7820205749734_d5d33f29d03205f79ebd197f666fa045-20260513144728-o66q2.jpg"
+                src="https://i.postimg.cc/9QGMt0bP/tong-quan-anh.jpg"
                 alt="Phối cảnh tháp Seasons Garden"
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"

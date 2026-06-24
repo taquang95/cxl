@@ -123,92 +123,27 @@ export default function Hero({ onOpenBooking }: HeroProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
             
-            {/* Left Column: Sales Representative info & Project Perks */}
-            <div className="lg:col-span-6 space-y-8 flex flex-col justify-between">
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Policy 1: Lãi suất hỗ trợ 70% */}
-                  <div className="p-4 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-1.5">
-                    <span className="text-[10px] font-bold text-[#CB7037] tracking-wider uppercase font-sans">Hỗ Trợ Lãi Suất</span>
-                    <h4 className="text-xs font-bold text-[#2A3A35] uppercase font-sans">Vay tối đa 70%</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed font-sans">
-                      Trả trước chỉ <strong>25%</strong>, hưởng lãi suất <strong>0%</strong> đến ngày <strong className="text-[#CB7037]">30/06/2029</strong>.
-                    </p>
-                  </div>
-
-                  {/* Policy 2: Lãi suất hỗ trợ 50% */}
-                  <div className="p-4 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-1.5">
-                    <span className="text-[10px] font-bold text-[#CB7037] tracking-wider uppercase font-sans">Hỗ Trợ Lãi Suất</span>
-                    <h4 className="text-xs font-bold text-[#2A3A35] uppercase font-sans">Vay tối đa 50%</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed font-sans">
-                      Hưởng lãi suất <strong>0%</strong> kéo dài đến hết ngày <strong className="text-[#CB7037]">30/09/2029</strong>.
-                    </p>
-                  </div>
-
-                  {/* Policy 3: Chiết khấu thanh toán */}
-                  <div className="p-4 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-1.5">
-                    <span className="text-[10px] font-bold text-[#CB7037] tracking-wider uppercase font-sans">Phương Thức Thanh Toán</span>
-                    <div className="space-y-1 font-sans">
-                      <p className="text-xs text-gray-600">
-                        • Thanh toán sớm: <strong className="text-[#CB7037]">CK 17%</strong>
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        • Theo tiến độ: <strong className="text-[#CB7037]">CK 8%</strong>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Policy 4: Chiết khấu ưu tiên đặc quyền */}
-                  <div className="p-4 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-1.5">
-                    <span className="text-[10px] font-bold text-[#CB7037] tracking-wider uppercase font-sans">Ưu Đãi Đặc Quyền</span>
-                    <div className="space-y-1 font-sans">
-                      <p className="text-xs text-gray-600">
-                        • Booking sớm (Early Bird): <strong className="text-[#CB7037]">1%</strong>
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        • Khách hàng cư dân: <strong className="text-[#CB7037]">2%</strong>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Policy 5: Quà tặng và Bàn giao */}
-                  <div className="p-4 rounded-xl bg-white border border-gray-200/80 hover:border-[#CB7037]/50 hover:shadow-md transition-all space-y-2 md:col-span-2">
-                    <span className="text-[10px] font-bold text-[#CB7037] tracking-wider uppercase font-sans">Dịch vụ & Bàn giao</span>
-                    <div className="grid grid-cols-2 gap-4 font-sans">
-                      <div>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wide">Quà tặng ưu đãi</p>
-                        <p className="text-xs text-gray-800 font-bold">Miễn phí PDV 12 - 24 tháng</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wide">Bàn giao dự kiến</p>
-                        <p className="text-xs text-[#CB7037] font-bold">Quý IV / 2028</p>
-                      </div>
-                    </div>
-                  </div>
+            {/* Left Column: Showcase Image of the Project */}
+            <div className="lg:col-span-6 w-full flex flex-col justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="w-full h-full min-h-[350px] md:min-h-[450px] rounded-2xl overflow-hidden border border-gray-200/80 shadow-lg relative group bg-white"
+              >
+                <img
+                  src="https://i.postimg.cc/Twv7XCBm/du-an-nguyen-trai-thanh-xuan-20260511022924-s2c-d.jpg"
+                  alt="Dự án Nguyễn Trãi Thanh Xuân"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 text-white text-shadow-sm pointer-events-none">
+                  <p className="text-xs uppercase tracking-widest font-bold text-[#D4AF37] mb-1 font-sans">Hà Nội Seasons Garden</p>
+                  <h4 className="text-lg md:text-xl font-serif font-bold leading-tight">Tuyệt tác không gian sống sang trọng giữa lòng Thanh Xuân</h4>
                 </div>
-              </div>
-
-              {/* Direct Sales Manager Board */}
-              <div className="p-5 md:p-6 bg-white rounded-2xl border border-[#CB7037]/25 shadow-sm space-y-4">
-                <div className="flex items-center justify-between border-b border-gray-100 pb-4">
-                  <div>
-                    <h4 className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold">{PROJECT_DETAILS.contactTitle}</h4>
-                    <p className="text-lg text-[#2A3A35] font-serif font-bold tracking-wide mt-0.5">{PROJECT_DETAILS.contactPerson}</p>
-                  </div>
-                  <div className="h-2 w-2 rounded-full bg-red-500 animate-ping shrink-0" />
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <p className="text-xs text-gray-600 leading-relaxed font-sans max-w-sm">
-                    Liên hệ trực tiếp qua số Hotline để nhận thông tin mật và hỗ trợ đặt lịch hẹn tham quan căn hộ mẫu thực tế.
-                  </p>
-                  <a
-                    href={`tel:${PROJECT_DETAILS.hotline}`}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#CB7037] to-[#BF5E21] hover:from-[#E68142] hover:to-[#CF6A2A] text-white font-bold text-sm tracking-wide shadow-md transition-all shrink-0 text-center font-sans cursor-pointer"
-                  >
-                    📞 {PROJECT_DETAILS.hotlineFormatted}
-                  </a>
-                </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Right Column: Interaction Form Card */}
@@ -329,6 +264,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             </div>
 
           </div>
+
         </div>
       </section>
     </>
