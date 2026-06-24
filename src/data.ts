@@ -6,7 +6,7 @@ export const PROJECT_DETAILS = {
   hotline: "0971735999",
   hotlineFormatted: "0971.735.999",
   zaloUrl: "https://zalo.me/0971735999",
-  website: "https://www.masterise233-235nguyentrai.com",
+  website: "https://mastericaoxalanguyentrai.com/",
   officeAddress: "233-235 Nguyễn Trãi, Thanh Xuân, Hà Nội",
   address: "233-235 Nguyễn Trãi, Thanh Xuân, Hà Nội",
   contactPerson: "Tạ Định",
