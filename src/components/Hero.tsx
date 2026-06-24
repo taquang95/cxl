@@ -39,7 +39,15 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        let data: any = {};
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          data = await response.json();
+        } else {
+          const rawText = await response.text();
+          const cleanText = rawText.length > 200 ? rawText.substring(0, 200) + "..." : rawText;
+          data = { error: `Lỗi máy chủ (${response.status}): ${cleanText || "Không thể kết nối máy chủ gửi thư"}` };
+        }
 
         if (!response.ok) {
           throw new Error(data.error || "Gửi đăng ký không thành công. Quý khách vui lòng thử lại sau.");
@@ -74,18 +82,12 @@ export default function Hero({ onOpenBooking }: HeroProps) {
       <section id="gioithieu" className="relative h-[90vh] md:h-[95vh] flex items-center overflow-hidden bg-[#131E1B]">
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0">
-          {/* Subtle gradient overlay of 5% opacity per user's request */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#131E1B] via-zinc-900/60 to-transparent z-10 opacity-5" />
-          {/* Main dark overlay to guarantee typography contrast & readablity */}
-          <div className="absolute inset-0 bg-black/45 z-10" />
           <img
             src="https://i.postimg.cc/J0DGc54N/cao-xa-la-masterise-homee.png"
             alt="Hà Nội Seasons Garden Nguyễn Trãi"
-            className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-10000 opacity-90"
+            className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-10000"
             referrerPolicy="no-referrer"
           />
-          {/* Elegant bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#131E1B] to-transparent z-10" />
         </div>
 
         {/* Hero Content - Clean cinematic image mode with scroll indicator only */}

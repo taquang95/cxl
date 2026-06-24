@@ -55,7 +55,16 @@ export default function BookingModal({
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        let data: any = {};
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          data = await response.json();
+        } else {
+          const rawText = await response.text();
+          // Extract plain text message or fallback to a standard error description
+          const cleanText = rawText.length > 200 ? rawText.substring(0, 200) + "..." : rawText;
+          data = { error: `Lỗi máy chủ (${response.status}): ${cleanText || "Không thể kết nối máy chủ gửi thư"}` };
+        }
 
         if (!response.ok) {
           throw new Error(data.error || "Gửi thông tin không thành công quý khách vui lòng kiểm tra lại cấu hình hoặc kết nối mạng.");

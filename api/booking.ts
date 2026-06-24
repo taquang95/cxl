@@ -28,9 +28,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // Gracefully handle parsed body vs plain string body
+    // Gracefully handle parsed body vs plain string/Buffer body
     let body = req.body;
-    if (typeof body === "string") {
+    if (body && typeof body === "object" && Buffer.isBuffer(body)) {
+      try {
+        body = JSON.parse(body.toString("utf-8"));
+      } catch (parseError) {
+        console.warn("Failed to parse body Buffer as JSON:", parseError);
+      }
+    } else if (typeof body === "string") {
       try {
         body = JSON.parse(body);
       } catch (parseError) {
@@ -61,7 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       authUser = `${authUser}@gmail.com`;
     }
 
-    // Connect to Gmail SMTP (SSL Port 465)
+    // Connect to Gmail SMTP (SSL Port 465) with safe timeouts
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -70,6 +76,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         user: authUser,
         pass: smtpPass,
       },
+      connectionTimeout: 5000, // 5 seconds connection timeout
+      greetingTimeout: 5000,   // 5 seconds greeting timeout
+      socketTimeout: 5000,     // 5 seconds socket timeout
     });
 
     const mailOptions = {

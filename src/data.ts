@@ -20,20 +20,20 @@ export const SPECIFICATIONS = [
   { label: "Tư vấn thiết kế", value: "P&T Group." },
   { label: "Tư vấn cảnh quan", value: "GroupGSA." },
   { label: "Thiết kế nội thất", value: "That’s ITH interior và 2nd Edition." },
-  { label: "Quy mô", value: "11 ha." },
+  { label: "Tổng diện tích", value: "11 ha." },
+  { label: "Quy mô", value: "10 tòa tháp (chiều cao 43 - 46 tầng)" },
   { label: "Cảnh quan", value: "~ 3,5ha." },
   { label: "Loại hình", value: "Căn hộ cao cấp, Duplex, Penthouse, Shophouse khối đế." },
-  { label: "Số tòa", value: "Có 11 tòa, cao 45 tầng." },
   { label: "Số lượng", value: "4500 căn hộ." },
   { label: "1 phòng ngủ", value: "~ 43 m2 – 53m2." },
   { label: "2 phòng ngủ", value: "~ 65 m2 – 74 m2." },
   { label: "3 phòng ngủ", value: "~ 99 m2 – 109 m2." },
   { label: "Duplex", value: "~ 124m2 – 200m2." },
   { label: "Penthouse", value: "~ 141m2 – 232.0m2." },
-  { label: "Bàn giao", value: "Hoàn thiện nội thất chất lượng 6 sao." },
+  { label: "Tiêu chuẩn bàn giao", value: "Hoàn thiện nội thất chất lượng 6 sao." },
+  { label: "Bàn giao", value: "Quý II/2029" },
   { label: "Sở hữu", value: "Sở hữu lâu dài đối với khách hàng người Việt Nam, 50 năm đối với khách hàng người nước ngoài." },
-  { label: "Khởi công", value: "Quý 3/2025." },
-  { label: "Giao nhà", value: "Quý 1/2028." }
+  { label: "Khởi công", value: "Quý 3/2025." }
 ];
 
 export const FLOOR_PLANS: FloorPlanItem[] = [
