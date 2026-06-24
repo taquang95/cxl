@@ -83,7 +83,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://i.postimg.cc/mZd39L2y/anh-bia-2.jpg"
+            src="https://i.postimg.cc/3x3DfzRx/hanoi-season-garden-nguyen-trai-8.jpg"
             alt="Hà Nội Seasons Garden Nguyễn Trãi"
             className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-10000"
             referrerPolicy="no-referrer"
@@ -112,10 +112,10 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#2A3A35] tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#2A3A35] tracking-tight uppercase">
               Yêu Cầu Tư Vấn & Nhận <br className="hidden sm:block" />
-              <span className="text-[#CB7037] font-serif">
-                Bảng Giá Hà nội Seasons Garden
+              <span className="text-[#2A3A35] font-serif">
+                Bảng Giá Hà Nội Seasons Garden
               </span>
             </h2>
             <div className="w-16 h-[2px] bg-[#CB7037] mx-auto mt-2" />
