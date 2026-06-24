@@ -80,7 +80,7 @@ export default function Location() {
                 <span className="text-xs font-bold font-sans tracking-wide">233-235 Nguyễn Trãi, Thanh Xuân, Hà Nội</span>
               </div>
               <img
-                src="https://w.ladicdn.com/s1500x1250/60d9ed782bd66f0013900826/vitri-20260513150512-jxgz2.jpg"
+                src="https://i.postimg.cc/W1VYzYHc/map-cao-xa-la-ta-dinh.jpg"
                 alt="Bản đồ vị trí dự án Hà Nội Seasons Garden Nguyễn Trãi"
                 className="w-full h-auto object-contain rounded-xl hover:scale-102 transition-transform duration-500"
                 referrerPolicy="no-referrer"
