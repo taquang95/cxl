@@ -115,7 +115,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#2A3A35] tracking-tight">
               Yêu Cầu Tư Vấn & Nhận <br className="hidden sm:block" />
               <span className="text-[#CB7037] font-serif">
-                Bảng Giá Seasons Garden
+                Bảng Giá Hà nội Seasons Garden
               </span>
             </h2>
             <div className="w-16 h-[2px] bg-[#CB7037] mx-auto mt-2" />
@@ -133,8 +133,8 @@ export default function Hero({ onOpenBooking }: HeroProps) {
                 className="w-full h-full min-h-[350px] md:min-h-[450px] rounded-2xl overflow-hidden border border-gray-200/80 shadow-lg relative group bg-white"
               >
                 <img
-                  src="https://i.postimg.cc/Twv7XCBm/du-an-nguyen-trai-thanh-xuan-20260511022924-s2c-d.jpg"
-                  alt="Dự án Nguyễn Trãi Thanh Xuân"
+                  src="https://i.postimg.cc/GpHnchtc/anh-shop-house.jpg"
+                  alt="Ảnh Shophouse Seasons Garden"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                   referrerPolicy="no-referrer"
                 />
