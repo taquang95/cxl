@@ -83,7 +83,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://i.postimg.cc/J0DGc54N/cao-xa-la-masterise-homee.png"
+            src="https://i.postimg.cc/x8WS7rnr/anh-bia.jpg"
             alt="Hà Nội Seasons Garden Nguyễn Trãi"
             className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-10000"
             referrerPolicy="no-referrer"
