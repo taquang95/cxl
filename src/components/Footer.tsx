@@ -241,25 +241,6 @@ export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
 
         </div>
 
-        {/* Legal Disclaimers */}
-        <div className="mt-8 pt-8 text-left space-y-4 max-w-5xl mx-auto border-t border-gray-200 font-sans">
-          <div className="flex flex-col gap-2 text-xs text-gray-500 leading-relaxed font-sans">
-            <h5 className="font-bold text-[#CB7037] text-sm tracking-wide uppercase">LƯU Ý</h5>
-            <div className="flex items-start gap-2.5">
-              <Shield className="w-4 h-4 text-[#CB7037] shrink-0 mt-0.5" />
-              <p>
-                * Website này thu thập thông tin cá nhân nhằm mục đích tư vấn sản phẩm. Khi điền thông tin vào các biểu mẫu, quý khách cần đọc kỹ và chấp nhận các điều khoản.
-              </p>
-            </div>
-            <div className="flex items-start gap-2.5">
-              <FileSpreadsheet className="w-4 h-4 text-gray-550 shrink-0 mt-0.5" />
-              <p>
-                - Thông tin trên website mang tính tham khảo. Website không phải trang chính thức của chủ đầu tư.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Sub-footer */}
         <div className="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-sans">
           <p className="font-medium text-center md:text-left">
