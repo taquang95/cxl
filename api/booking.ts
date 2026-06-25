@@ -51,8 +51,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // SMTP configuration fallback / environment variables
-    const smtpUser = process.env.SMTP_USER || "taquang95@gmail.com";
-    const rawPass = process.env.SMTP_PASS || "unah cebk lsru rmnz";
+    const smtpUser = process.env.SMTP_USER || "tadinh.bds@gmail.com";
+    const rawPass = process.env.SMTP_PASS || "vdit fied trhd wqbq";
     const smtpPass = rawPass.replace(/\s+/g, "");
     
     const defaultRecipients = [
