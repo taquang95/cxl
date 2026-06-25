@@ -10,7 +10,7 @@ const FLOOR_LAYOUT_SLIDES = [
   "https://i.postimg.cc/BZhVhCbw/mat-bang-can-ho-cao-xa-la-nguyen-trai-(1).jpg",
   "https://i.postimg.cc/RCPDPThD/mat-bang-can-ho-cao-xa-la-nguyen-trai-(2).jpg",
   "https://i.postimg.cc/05tBtCjW/mat-bang-can-ho-cao-xa-la-nguyen-trai-(3).jpg",
-  "https://i.postimg.cc/Y2XsXx0D/mat-bang-can-ho-cao-xa-la-nguyen-trai-(4).jpg",
+  "https://i.postimg.cc/Y2XsXx0D/mat-bang-can-ho-xa-la-nguyen-trai-(4).jpg",
   "https://i.postimg.cc/zXVP4RHj/mat-bang-can-ho-cao-xa-la-nguyen-trai-(5).jpg",
   "https://i.postimg.cc/kMjpjyGL/mat-bang-can-ho-cao-xa-la-nguyen-trai-(6).jpg",
   "https://i.postimg.cc/02bHhJKn/mat-bang-can-ho-cao-xa-la-nguyen-trai-(7).jpg",
@@ -21,9 +21,21 @@ const FLOOR_LAYOUT_SLIDES = [
   "https://i.postimg.cc/CLz69fnr/mat-bang-can-ho-cao-xa-la-nguyen-trai-(12).jpg"
 ];
 
+const DETAIL_FLOOR_LAYOUTS = [
+  "https://i.postimg.cc/52PnSNkR/mat-bang-chuan-cao-xa-la-nguyen-trai-(1).jpg",
+  "https://i.postimg.cc/sgnw4D0q/mat-bang-chuan-cao-xa-la-nguyen-trai-(2).jpg",
+  "https://i.postimg.cc/fRHBfTg1/mat-bang-chuan-cao-xa-la-nguyen-trai-(3).jpg",
+  "https://i.postimg.cc/kgjfvXhH/mat-bang-chuan-cao-xa-la-nguyen-trai-(4).jpg",
+  "https://i.postimg.cc/L8yN36bK/mat-bang-chuan-cao-xa-la-nguyen-trai-(5).jpg",
+  "https://i.postimg.cc/y8fvyYbz/mat-bang-chuan-cao-xa-la-nguyen-trai-(6).jpg",
+  "https://i.postimg.cc/P562QrRn/mat-bang-chuan-cao-xa-la-nguyen-trai-(7).jpg",
+  "https://i.postimg.cc/yNknQ4wp/mat-bang-chuan-cao-xa-la-nguyen-trai-(8).jpg"
+];
+
 export default function MasterPlan({ onOpenBooking }: MasterPlanProps) {
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [detailActiveIndex, setDetailActiveIndex] = useState(0);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % FLOOR_LAYOUT_SLIDES.length);
@@ -133,6 +145,93 @@ export default function MasterPlan({ onOpenBooking }: MasterPlanProps) {
                 <p className="text-xs text-gray-500 mt-1 font-sans">Click để phóng to xem chi tiết cơ cấu căn hộ</p>
               </div>
             </motion.div>
+          </div>
+
+          {/* Detailed Floor Plan Typical Layouts Section (8 images in 1-row slider) */}
+          <div className="mt-20 pt-16 border-t border-gray-200/80">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <span className="text-[10px] font-bold text-[#CB7037] tracking-widest uppercase font-sans px-3 py-1 bg-[#CB7037]/10 rounded-full border border-[#CB7037]/20">
+                Bản Vẽ Chi Tiết
+              </span>
+              <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#2A3A35] leading-tight uppercase mt-3">
+                Mặt Bằng Tầng Điển Hình Chi Tiết
+              </h3>
+              <p className="text-gray-500 mt-2 text-xs md:text-sm font-sans font-medium">
+                Sơ đồ thiết kế kiến trúc chuẩn phong cách hiện đại với bố trí không gian thông minh, tối ưu diện tích sử dụng.
+              </p>
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              {/* Carousel Container */}
+              <div className="relative aspect-[4/3] md:aspect-[16/11] bg-gray-50 rounded-2xl border border-gray-150 p-4 md:p-6 overflow-hidden shadow-md flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={detailActiveIndex}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="w-full h-full flex items-center justify-center cursor-pointer group"
+                    onClick={() => setZoomImage(DETAIL_FLOOR_LAYOUTS[detailActiveIndex])}
+                  >
+                    <div className="absolute top-4 right-4 z-10 p-2.5 rounded-lg bg-black/60 hover:bg-[#CB7037] text-white opacity-100 transition-colors duration-300 shadow-md">
+                      <Eye className="w-5 h-5" />
+                    </div>
+                    <img
+                      src={DETAIL_FLOOR_LAYOUTS[detailActiveIndex]}
+                      alt={`Mặt bằng chi tiết tầng điển hình ${detailActiveIndex + 1}`}
+                      className="max-h-full max-w-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.01]"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Slider Controls */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDetailActiveIndex((prev) => (prev - 1 + DETAIL_FLOOR_LAYOUTS.length) % DETAIL_FLOOR_LAYOUTS.length);
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2.5 md:p-3 rounded-full bg-white/95 hover:bg-[#CB7037] text-gray-800 hover:text-white border border-gray-200 transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+                  aria-label="Trang trước"
+                >
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDetailActiveIndex((prev) => (prev + 1) % DETAIL_FLOOR_LAYOUTS.length);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2.5 md:p-3 rounded-full bg-white/95 hover:bg-[#CB7037] text-gray-800 hover:text-white border border-gray-200 transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+                  aria-label="Trang tiếp theo"
+                >
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                </button>
+
+                {/* Badge Indicator */}
+                <div className="absolute bottom-6 left-6 bg-black/75 text-white px-3.5 py-1.5 rounded-lg text-[10px] md:text-xs font-bold font-sans tracking-wider backdrop-blur-sm border border-white/10">
+                  MẶT BẰNG {detailActiveIndex + 1} / {DETAIL_FLOOR_LAYOUTS.length}
+                </div>
+              </div>
+
+              {/* Navigation Tabs Indicator Bar */}
+              <div className="mt-6 flex flex-wrap justify-center gap-2 px-4">
+                {DETAIL_FLOOR_LAYOUTS.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setDetailActiveIndex(idx)}
+                    className={`w-10 h-10 rounded-lg font-sans font-bold text-xs border transition-all duration-300 cursor-pointer ${
+                      detailActiveIndex === idx
+                        ? "bg-[#CB7037] text-white border-[#CB7037] shadow-md scale-110"
+                        : "bg-white hover:bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    {idx + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
