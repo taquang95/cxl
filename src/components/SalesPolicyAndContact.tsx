@@ -1,7 +1,11 @@
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { X } from "lucide-react";
 import { PROJECT_DETAILS } from "../data";
 
 export default function SalesPolicyAndContact() {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
   return (
     <section id="chinhsach-tuvan" className="py-20 bg-[#FAF9F6] border-t border-gray-200/80 text-[#131E1B]">
       <div className="container mx-auto px-4 lg:px-8">
@@ -21,9 +25,11 @@ export default function SalesPolicyAndContact() {
                   <span>🔍</span>
                 </div>
                 <a 
-                  href="https://i.postimg.cc/N0172R5j/chinh-sach-ban-hang-hsg.jpg" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsLightboxOpen(true);
+                  }}
                   className="block overflow-hidden rounded-xl"
                 >
                   <img
@@ -142,6 +148,51 @@ export default function SalesPolicyAndContact() {
 
         </div>
       </div>
+
+      {/* Lightbox Modal for Large Image View */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6 cursor-zoom-out"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsLightboxOpen(false);
+              }}
+              className="absolute top-4 right-4 md:top-6 md:right-6 bg-white/10 hover:bg-white/20 hover:scale-105 active:scale-95 text-white p-3 rounded-full transition-all cursor-pointer z-[10000] border border-white/10 flex items-center justify-center"
+              aria-label="Đóng"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Image Container with Zoom effect */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
+              className="relative max-w-full max-h-[85vh] md:max-h-[90vh] overflow-hidden rounded-xl bg-neutral-900"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src="https://i.postimg.cc/N0172R5j/chinh-sach-ban-hang-hsg.jpg"
+                alt="Chính sách bán hàng Hà Nội Seasons Garden"
+                className="max-h-[80vh] md:max-h-[85vh] w-auto h-auto object-contain select-none shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+              <div className="text-center py-2 text-white/60 text-xs font-sans bg-black/40 backdrop-blur-xs select-none">
+                Chạm hoặc click ngoài vùng ảnh để đóng
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
