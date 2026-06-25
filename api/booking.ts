@@ -56,7 +56,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const smtpPass = rawPass.replace(/\s+/g, "");
     
     const defaultRecipients = [
-      "taquang95@gmail.com",
       "tadinh.bds@gmail.com",
       "thanhthuyy281291@gmail.com"
     ];

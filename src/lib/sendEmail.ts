@@ -9,7 +9,6 @@ export async function sendLeadEmail(lead: BookingLead) {
   const smtpPass = rawPass.replace(/\s+/g, "");
   
   const defaultRecipients = [
-    "taquang95@gmail.com",
     "tadinh.bds@gmail.com",
     "thanhthuyy281291@gmail.com"
   ];
