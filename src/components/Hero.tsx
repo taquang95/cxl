@@ -79,26 +79,26 @@ export default function Hero({ onOpenBooking }: HeroProps) {
   return (
     <>
       {/* SECTION 1: CINEMATIC HERO BANNER (Dành riêng cho ảnh bìa, tiêu đề chính & CTA) */}
-      <section id="gioithieu" className="relative h-[90vh] md:h-[95vh] flex items-center overflow-hidden bg-[#131E1B]">
+      <section id="gioithieu" className="relative w-full overflow-hidden bg-[#131E1B]">
         {/* Background Image Container */}
-        <div className="absolute inset-0 z-0">
+        <div className="w-full">
           <img
-            src="https://i.postimg.cc/3x3DfzRx/hanoi-season-garden-nguyen-trai-8.jpg"
+            src="https://i.postimg.cc/nVvWvQQV/hanoi-seasons-garden-banner.webp"
             alt="Hà Nội Seasons Garden Nguyễn Trãi"
-            className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-10000"
+            className="w-full h-auto block"
             referrerPolicy="no-referrer"
           />
         </div>
 
         {/* Hero Content - Clean cinematic image mode with scroll indicator only */}
-        <div className="container mx-auto px-4 lg:px-8 relative z-25 max-w-7xl text-center h-full flex flex-col justify-end pb-12">
+        <div className="absolute inset-x-0 bottom-4 md:bottom-8 z-20 text-center flex flex-col justify-end">
           {/* Scroll down indicator */}
           <div className="mx-auto">
             <button
               onClick={() => scrollToSection("dangky-tuvan")}
-              className="animate-bounce inline-flex items-center justify-center p-3 rounded-full border border-white/20 text-white hover:text-[#CB7037] hover:border-[#CB7037] transition-all cursor-pointer bg-black/40 backdrop-blur-sm shadow-lg"
+              className="animate-bounce inline-flex items-center justify-center p-2.5 md:p-3 rounded-full border border-white/20 text-white hover:text-[#CB7037] hover:border-[#CB7037] transition-all cursor-pointer bg-black/40 backdrop-blur-sm shadow-lg"
             >
-              <ChevronDown className="w-6 h-6" />
+              <ChevronDown className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </div>
         </div>

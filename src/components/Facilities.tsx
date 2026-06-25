@@ -33,6 +33,65 @@ export default function Facilities() {
           </p>
         </div>
 
+        {/* Khung ảnh nổi bật 2 tiện ích lớn: 1 hàng, 2 cột */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {/* Tiện ích lớn 1: Bể bơi vô cực */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="group relative rounded-2xl overflow-hidden shadow-xl border border-gray-200/60 bg-white h-[350px] md:h-[480px] cursor-pointer"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/25 to-transparent z-10" />
+            <img
+              src="https://i.postimg.cc/Ss96bCpm/be-boi.jpg"
+              alt="Bể bơi vô cực đẳng cấp"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-8 flex flex-col justify-end text-white">
+              <span className="text-xs font-bold text-[#CB7037] uppercase tracking-widest mb-2 bg-[#CB7037]/10 w-fit px-3 py-1 rounded-full font-sans border border-[#CB7037]/20">
+                TIỆN ÍCH ĐẶC QUYỀN NỔI BẬT
+              </span>
+              <h3 className="text-2xl md:text-3xl font-serif font-bold leading-tight drop-shadow-md text-white">
+                BỂ BƠI VÔ CỰC HOÀNG GIA 6 SAO
+              </h3>
+              <p className="text-xs md:text-sm text-gray-200/90 mt-2 max-w-xl font-sans leading-relaxed">
+                Không gian thư giãn đẳng cấp quốc tế với làn nước mát lành và tầm nhìn toàn cảnh ôm trọn mây trời thành phố, mang lại trải nghiệm nghỉ dưỡng xa hoa trọn vẹn mỗi ngày.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Tiện ích lớn 2: Shophouse thương mại */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="group relative rounded-2xl overflow-hidden shadow-xl border border-gray-200/60 bg-white h-[350px] md:h-[480px] cursor-pointer"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/25 to-transparent z-10" />
+            <img
+              src="https://i.postimg.cc/GpHnchtc/anh-shop-house.jpg"
+              alt="Shophouse thương mại cao cấp"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-8 flex flex-col justify-end text-white">
+              <span className="text-xs font-bold text-[#CB7037] uppercase tracking-widest mb-2 bg-[#CB7037]/10 w-fit px-3 py-1 rounded-full font-sans border border-[#CB7037]/20">
+                MẶT BẰNG KINH DOANH SẦM UẤT
+              </span>
+              <h3 className="text-2xl md:text-3xl font-serif font-bold leading-tight drop-shadow-md text-white">
+                SHOPHOUSE THƯƠNG MẠI CAO CẤP
+              </h3>
+              <p className="text-xs md:text-sm text-gray-200/90 mt-2 max-w-xl font-sans leading-relaxed">
+                Tổ hợp mua sắm, giải trí và ẩm thực sầm uất ngay dưới chân tòa nhà, mở ra tiềm năng thương mại đắc lộc và gia tăng giá trị đầu tư vượt trội theo thời gian.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Bento/Grid Gallery */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FACILITIES.map((fac, index) => (
