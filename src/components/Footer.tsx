@@ -256,6 +256,58 @@ export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
           </div>
         </div>
 
+        {/* Company Legal Information - Schema & SEO Compliant */}
+        <div className="mt-10 pt-8 border-t border-gray-200/60">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start text-xs text-gray-500 font-sans">
+            {/* Left side: Company details */}
+            <div className="lg:col-span-12 space-y-3">
+              <h5 className="font-bold text-[#2A3A35] text-xs uppercase tracking-widest flex items-center gap-2">
+                <span className="w-1.5 h-3 bg-[#CB7037] rounded-xs inline-block" />
+                THÔNG TIN DOANH NGHIỆP & PHÁP LÝ
+              </h5>
+              <div className="space-y-1.5 text-gray-600 leading-relaxed text-left">
+                <p className="font-sans">
+                  <strong className="text-[#2A3A35]">Tên công ty:</strong> Công ty Cổ Phần Phát Triển Bất Động Sản Trường Phát Group
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                  <p>
+                    <strong className="text-[#2A3A35]">Mã số thuế (MST):</strong> <span className="font-mono text-[#2A3A35] font-bold bg-gray-100 px-1.5 py-0.5 rounded text-[11px] border border-gray-200">0901144166</span>
+                  </p>
+                  <p>
+                    <strong className="text-[#2A3A35]">Hóa đơn điện tử:</strong> Gửi bản XML & PDF về <a href="mailto:ketoan@truongphatgroup.com.vn" className="text-[#CB7037] hover:underline font-semibold font-mono">ketoan@truongphatgroup.com.vn</a>
+                  </p>
+                </div>
+                <p>
+                  <strong className="text-[#2A3A35]">Địa chỉ:</strong> Căn biệt thự SB-72, dự án Vinhomes Ocean Park 2 - The Empire, Xã Long Hưng, Huyện Văn Giang, Tỉnh Hưng Yên, Việt Nam
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Structured Schema.org JSON-LD for Search Engines */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "RealEstateAgent",
+              "name": "Công ty Cổ Phần Phát Triển Bất Động Sản Trường Phát Group",
+              "taxID": "0901144166",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Căn biệt thự SB-72, dự án Vinhomes Ocean Park 2 - The Empire, Xã Long Hưng",
+                "addressLocality": "Huyện Văn Giang",
+                "addressRegion": "Tỉnh Hưng Yên",
+                "addressCountry": "VN"
+              },
+              "email": "ketoan@truongphatgroup.com.vn",
+              "telephone": PROJECT_DETAILS.hotline,
+              "url": PROJECT_DETAILS.website
+            })
+          }}
+        />
+
       </div>
     </footer>
   );
