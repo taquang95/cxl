@@ -113,9 +113,9 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#2A3A35] tracking-tight uppercase">
-              Yêu Cầu Tư Vấn & Nhận <br className="hidden sm:block" />
+              Chính Sách Bán Hàng <br className="hidden sm:block" />
               <span className="text-[#2A3A35] font-serif">
-                Bảng Giá Hà Nội Seasons Garden
+                Hà Nội Seasons Garden
               </span>
             </h2>
             <div className="w-16 h-[2px] bg-[#CB7037] mx-auto mt-2" />

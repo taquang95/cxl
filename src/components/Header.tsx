@@ -24,18 +24,19 @@ export default function Header({ onOpenBooking }: HeaderProps) {
   }, []);
 
   const navItems = [
-    { label: "GIỚI THIỆU", href: "#gioithieu" },
-    { label: "TỔNG QUAN", href: "#tongquan" },
-    { label: "SẢN PHẨM", href: "#sanpham" },
-    { label: "MẶT BẰNG", href: "#matbang" },
-    { label: "TIỆN ÍCH", href: "#tienich" },
-    { label: "VỊ TRÍ", href: "#vitri" }
+    { label: "GIỚI THIỆU", href: "/gioi-thieu-hanoi-seasons-garden/", targetId: "#gioithieu" },
+    { label: "TỔNG QUAN", href: "/tong-quan-hanoi-seasons-garden/", targetId: "#tongquan" },
+    { label: "SẢN PHẨM", href: "/san-pham-hanoi-seasons-garden/", targetId: "#sanpham" },
+    { label: "MẶT BẰNG", href: "/mat-bang-hanoi-seasons-garden/", targetId: "#matbang" },
+    { label: "TIỆN ÍCH", href: "/tien-ich-hanoi-seasons-garden/", targetId: "#tienich" },
+    { label: "CHÍNH SÁCH", href: "/chinh-sach-ban-hang-hanoi-seasons-garden/", targetId: "#dangky-tuvan" },
+    { label: "VỊ TRÍ", href: "/vi-tri-hanoi-seasons-garden/", targetId: "#vitri" }
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
-    const targetElement = document.querySelector(href);
+    const targetElement = document.querySelector(targetId);
     if (targetElement) {
       const headerOffset = 80;
       const elementPosition = targetElement.getBoundingClientRect().top;
@@ -86,13 +87,13 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 justify-center flex-1 md:basis-1/2">
+            <nav className="hidden lg:flex items-center gap-3 xl:gap-5 justify-center flex-1 md:basis-1/2">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`text-xs xl:text-sm font-bold tracking-wider transition-colors relative py-1 group uppercase ${
+                  onClick={(e) => handleNavClick(e, item.targetId)}
+                  className={`text-[11px] xl:text-xs font-bold tracking-wider transition-colors relative py-1 group uppercase whitespace-nowrap ${
                     isScrolled
                       ? "text-gray-800 hover:text-[#CB7037]"
                       : "text-white/85 hover:text-[#D4AF37]"
@@ -107,21 +108,21 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             </nav>
 
             {/* CTA Actions */}
-            <div className="hidden lg:flex items-center gap-4 justify-end md:basis-1/4">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-4 justify-end md:basis-1/4">
               <a
                 href={`tel:${PROJECT_DETAILS.hotline}`}
-                className={`flex items-center gap-2 text-xs xl:text-sm font-bold border rounded-full transition-all px-4 py-2 ${
+                className={`flex items-center gap-1.5 text-[11px] xl:text-xs font-bold border rounded-full transition-all px-3 py-1.5 whitespace-nowrap ${
                   isScrolled
                     ? "text-[#CB7037] bg-gray-50 border-[#CB7037]/30 hover:bg-gray-100"
-                    : "text-[#D4AF37] bg-[#31423C]/50 hover:bg-[#31423C] border-[#CB7037]/43"
+                    : "text-[#D4AF37] bg-[#31423C]/50 hover:bg-[#31423C] border-[#CB7037]/40"
                 }`}
               >
-                <Phone className="w-4 h-4 animate-bounce" />
+                <Phone className="w-3.5 h-3.5 animate-bounce" />
                 <span>{PROJECT_DETAILS.hotlineFormatted}</span>
               </a>
               <button
                 onClick={() => onOpenBooking()}
-                className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#CB7037] to-[#BF5E21] hover:from-[#E68142] hover:to-[#CF6A2A] text-white font-bold text-xs xl:text-sm tracking-wider uppercase transition-all shadow-md hover:shadow-[#CB7037]/22 hover:scale-105 active:scale-95"
+                className="px-4 py-2 rounded-full bg-gradient-to-r from-[#CB7037] to-[#BF5E21] hover:from-[#E68142] hover:to-[#CF6A2A] text-white font-bold text-[11px] xl:text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-[#CB7037]/22 hover:scale-105 active:scale-95 whitespace-nowrap"
               >
                 YÊU CẦU TƯ VẤN
               </button>
@@ -198,7 +199,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
                     <a
                       key={item.label}
                       href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
+                      onClick={(e) => handleNavClick(e, item.targetId)}
                       className="text-base font-bold tracking-wider text-gray-200 hover:text-[#D4AF37] transition-colors py-1 block uppercase border-b border-[#31423C]/40"
                     >
                       {item.label}

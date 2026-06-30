@@ -1,7 +1,6 @@
-import React, { useState, useTransition } from "react";
-import { Landmark, MapPin, Phone, Globe, Shield, FileSpreadsheet, Send, MessageCircle } from "lucide-react";
+import React from "react";
+import { MapPin, Phone, Globe } from "lucide-react";
 import { PROJECT_DETAILS } from "../data";
-import { BookingLead } from "../types";
 
 interface FooterProps {
   onOpenBooking: (apartmentType?: string) => void;
@@ -9,65 +8,19 @@ interface FooterProps {
 }
 
 export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [isPending, startTransition] = useTransition();
-
-  const handleFooterSubmit = (e: React.FormEvent) => {
+  const handleFooterNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    if (!name || !phone) return;
-    setErrorMsg(null);
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
-    startTransition(async () => {
-      try {
-        const payload: BookingLead = {
-          name,
-          phone,
-          apartmentType: "Đăng ký từ chân trang (Footer)",
-          sourceForm: "Form Liên Hệ Chân Trang",
-          timestamp: new Date().toLocaleString("vi-VN")
-        };
-
-        const response = await fetch("/api/booking", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        let data: any = {};
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          data = await response.json();
-        } else {
-          const rawText = await response.text();
-          const cleanText = rawText.length > 200 ? rawText.substring(0, 200) + "..." : rawText;
-          data = { error: `Lỗi máy chủ (${response.status}): ${cleanText || "Không thể kết nối máy chủ gửi thư"}` };
-        }
-
-        if (!response.ok) {
-          throw new Error(data.error || "Có lỗi bất ngờ xảy ra khi gửi đăng ký.");
-        }
-
-        try {
-          const existingLeads = JSON.parse(localStorage.getItem("masterise_leads") || "[]");
-          existingLeads.push(payload);
-          localStorage.setItem("masterise_leads", JSON.stringify(existingLeads));
-        } catch (storageErr) {
-          console.warn("localStorage is not accessible in this context:", storageErr);
-        }
-
-        setIsSubmitted(true);
-        setName("");
-        setPhone("");
-      } catch (err: any) {
-        console.error("Footer form submission error:", err);
-        setErrorMsg(err.message || "Không thể kết nối máy chủ gửi thư. Vui lòng thử lại!");
-      }
-    });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   return (
@@ -148,97 +101,131 @@ export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 2: Easy Link anchors navigation */}
-          <div className="md:col-span-6 lg:col-span-3 space-y-4">
+          {/* Column 2: Chính sách bảo mật & Quyền riêng tư (Replaced from Danh mục truy cập & Đăng ký tư vấn) */}
+          <div className="md:col-span-12 lg:col-span-8 space-y-5 text-left font-sans">
             <h4 className="text-sm font-bold tracking-wider text-[#2A3A35] uppercase border-l-2 border-[#CB7037] pl-3">
-              DANH MỤC TRUY CẬP
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-gray-500 font-sans">
-              <li>
-                <a href="#gioithieu" className="hover:text-[#CB7037] transition-colors">Giới thiệu tổng quan</a>
-              </li>
-              <li>
-                <a href="#tongquan" className="hover:text-[#CB7037] transition-colors">Thông số dự án Seasons Garden</a>
-              </li>
-              <li>
-                <a href="#sanpham" className="hover:text-[#CB7037] transition-colors">Danh sách 6 loại hình căn hộ</a>
-              </li>
-              <li>
-                <a href="#matbang" className="hover:text-[#CB7037] transition-colors">Bản vẽ thiết kế mặt bằng tầng</a>
-              </li>
-              <li>
-                <a href="#tienich" className="hover:text-[#CB7037] transition-colors">Tiện ích đặc quyền 6 sao</a>
-              </li>
-              <li>
-                <a href="#tiendo" className="hover:text-[#CB7037] transition-colors">Cập nhật tiến trình công trường</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Contact Form Inline */}
-          <div className="md:col-span-6 lg:col-span-5 space-y-4">
-            <h4 className="text-sm font-bold tracking-wider text-[#2A3A35] uppercase border-l-2 border-[#CB7037] pl-3">
-              YÊU CẦU ĐOÀN KHẢO SÁT & TƯ VẤN
+              CHÍNH SÁCH BẢO MẬT & QUYỀN RIÊNG TƯ
             </h4>
             
-            {!isSubmitted ? (
-              <form onSubmit={handleFooterSubmit} className="space-y-3">
-                <p className="text-xs text-gray-550 leading-relaxed text-left font-sans">
-                  Quý đối tác hoặc quan khách có nhu cầu nhận file thiết kế chuẩn HD hoặc xếp lịch khảo sát căn hộ thực nghiệm hãy gửi yêu cầu nhanh tại đây:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Họ và tên quý khách"
-                    className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-250 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#CB7037] text-xs"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Số điện thoại di động"
-                    pattern="(\+84|0)(3|5|7|8|9)[0-9]{8}"
-                    className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-250 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#CB7037] text-xs"
-                  />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-xs sm:text-sm text-gray-500 leading-relaxed font-sans">
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <h5 className="font-bold text-[#CB7037] text-xs uppercase tracking-wide">1. Mục đích thu thập dữ liệu</h5>
+                  <p className="text-gray-600 font-sans leading-relaxed">
+                    Chúng tôi thu thập thông tin cá nhân của quý khách (bao gồm: Họ tên, Số điện thoại di động, Loại căn hộ quan tâm) nhằm mục đích duy nhất là cung cấp thông tin tư vấn chính thức, báo giá chi tiết, sơ đồ mặt bằng tối ưu, và lịch trình tham quan căn hộ dự án Hà Nội Seasons Garden Nguyễn Trãi.
+                  </p>
                 </div>
-                {errorMsg && (
-                  <div className="p-2.5 bg-red-50 border border-red-200 rounded-lg text-[11px] text-red-700 leading-normal text-center font-medium">
-                    {errorMsg}
-                  </div>
-                )}
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-gradient-to-r from-[#CB7037] to-[#BF5E21] hover:from-[#E68142] hover:to-[#CF6A2A] text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  {isPending ? (
-                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <Send className="w-3.5 h-3.5" />
-                      <span>ĐĂNG KÝ NGAY</span>
-                    </>
-                  )}
-                </button>
-              </form>
-            ) : (
-              <div className="p-4 bg-green-50 rounded-xl border border-green-200 text-center text-xs space-y-2">
-                <p className="text-[#CB7037] font-bold uppercase">Gửi yêu cầu thành công!</p>
-                <p className="text-gray-600 font-sans">Ban thư ký phòng kinh doanh tháp Seasons Garden sẽ liên hệ với quý khách trong tích tắc.</p>
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="text-[10px] text-[#CB7037] underline cursor-pointer"
-                >
-                  Gửi biểu mẫu khác
-                </button>
+
+                <div className="space-y-1">
+                  <h5 className="font-bold text-[#CB7037] text-xs uppercase tracking-wide">2. Cam kết bảo mật thông tin</h5>
+                  <p className="text-gray-600 font-sans leading-relaxed">
+                    Mọi thông tin cá nhân quý cư dân cung cấp được lưu trữ trên máy chủ bảo mật tối ưu của Masterise Homes. Chúng tôi cam kết tuyệt đối:
+                  </p>
+                  <ul className="space-y-1.5 pl-4 list-disc text-gray-500 font-sans leading-relaxed">
+                    <li>Không bán, chia sẻ hoặc cho thuê thông tin cá nhân cho bên thứ ba.</li>
+                    <li>Không spam tin nhắn quảng cáo không thuộc phạm vi dự án Seasons Garden.</li>
+                    <li>Mã hóa các luồng truyền thông tin khách hàng trên hệ thống kỹ thuật số.</li>
+                  </ul>
+                </div>
               </div>
-            )}
+
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <h5 className="font-bold text-[#CB7037] text-xs uppercase tracking-wide">3. Quyền hạn của khách hàng</h5>
+                  <p className="text-gray-600 font-sans leading-relaxed">
+                    Quý khách bất kỳ lúc nào cũng có quyền yêu cầu tư vấn viên sửa đổi, hủy bỏ thông tin cá nhân đã khai báo bằng việc liên hệ trực tiếp số điện thoại đường dây nóng <a href="tel:0971735999" className="text-[#CB7037] font-bold hover:underline font-mono">0971.735.999</a> hoặc từ chối cuộc gọi từ chuyên viên tư vấn.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <h5 className="font-bold text-[#CB7037] text-xs uppercase tracking-wide">4. Lưu ý quan trọng</h5>
+                  <p className="text-gray-500 italic text-[11px] sm:text-xs leading-normal font-sans">
+                    * Website là trang trung gian cập nhật thông tin kế hoạch phục vụ khách hàng tìm hiểu mua căn hộ Masterise Homes, không phải là trang trực tiếp phòng quan hệ đối tác đầu tư chính phủ của chủ đầu tư. Mọi thiết kế phối cảnh và con số mang tính tham khảo dự án sớm trước kỳ bán hàng chính thức.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
+        </div>
+
+        {/* Company Legal Information - Schema & SEO Compliant (Styled to match attached layout) */}
+        <div className="mt-14 p-6 sm:p-10 md:p-12 rounded-2xl bg-[#182622] text-white border border-[#2A3A35]/30 shadow-2xl relative overflow-hidden font-sans">
+          {/* Subtle background glow effect */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#CB7037]/5 blur-3xl rounded-full pointer-events-none" />
+
+          {/* Top block (Centered) */}
+          <div className="relative z-10 text-center space-y-4 max-w-4xl mx-auto">
+            <h4 className="text-base sm:text-lg md:text-xl font-bold tracking-wider text-white uppercase font-sans">
+              CÔNG TY CỔ PHẦN PHÁT TRIỂN BẤT ĐỘNG SẢN TRƯỜNG PHÁT GROUP
+            </h4>
+            <p className="text-[#CB7037] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
+              ĐƠN VỊ PHÂN PHỐI CHÍNH THỨC DỰ ÁN HANOI SEASONS GARDEN
+            </p>
+            <div className="space-y-2 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              <p>
+                <strong className="text-white font-medium">Địa chỉ:</strong> Căn biệt thự SB-72, dự án Vinhomes Ocean Park 2 - The Empire, Xã Long Hưng, Huyện Văn Giang, Tỉnh Hưng Yên, Việt Nam
+              </p>
+              <p>
+                <strong className="text-white font-medium">Mã số thuế:</strong> <span className="font-mono text-white font-bold bg-white/10 px-2 py-0.5 rounded border border-white/5">0901144166</span>
+              </p>
+              <p>
+                <strong className="text-white font-medium">Email hóa đơn bản XML và PDF về:</strong>{" "}
+                <a href="mailto:ketoan@truongphatgroup.com.vn" className="text-[#CB7037] hover:underline font-bold font-mono">
+                  ketoan@truongphatgroup.com.vn
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Horizontal dividing line */}
+          <div className="w-full h-[1px] bg-white/10 my-8 relative z-10" />
+
+          {/* Bottom columns (2 columns: Commitment & Privacy) */}
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-left">
+            {/* Left Column: Commitment */}
+            <div className="space-y-4">
+              <h5 className="text-xs md:text-sm font-bold tracking-wider text-white uppercase relative pl-3 border-l-2 border-[#CB7037]">
+                CAM KẾT TỪ NHÀ PHÂN PHỐI UY TÍN CHÍNH THỨC
+              </h5>
+              <ul className="space-y-2.5 text-xs text-gray-300 font-sans leading-relaxed">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Đội ngũ chuyên viên tư vấn Chuyên nghiệp, trung thực, Nhiệt tình, Nhiều năm kinh nghiệm</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Mọi thủ tục, Pháp lý khách hàng đều được thực hiện ký kết trực tiếp với Chủ đầu tư</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Cung cấp thông tin nhanh chóng, chính xác và cập nhật mới nhất từ chủ đầu tư</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Hỗ trợ tư vấn trực tiếp, chuyên sâu giúp quý khách tìm căn hộ phù hợp với gia đình</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Trực tiếp hướng dẫn quý khách tham quan căn hộ thực tế và nhà mẫu</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#CB7037] shrink-0 text-[8px] mt-1.5">■</span>
+                  <span>Hỗ trợ thủ tục giấy tờ Liên quan trong quá trình mua & Hậu chăm sóc lâu dài</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right Column: Privacy Policy */}
+            <div className="space-y-4">
+              <h5 className="text-xs md:text-sm font-bold tracking-wider text-white uppercase relative pl-3 border-l-2 border-[#CB7037]">
+                CHÍNH SÁCH BẢO MẬT
+              </h5>
+              <p className="text-xs text-gray-300 leading-relaxed font-sans font-normal italic">
+                Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và không chia sẻ, bán hoặc trao đổi thông tin cá nhân của bạn cho bên thứ ba trừ khi có sự đồng ý rõ ràng từ bạn hoặc theo yêu cầu pháp luật.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Sub-footer */}
@@ -253,35 +240,6 @@ export default function Footer({ onOpenBooking, onOpenPolicy }: FooterProps) {
             >
               Chính sách & quyền riêng tư
             </button>
-          </div>
-        </div>
-
-        {/* Company Legal Information - Schema & SEO Compliant */}
-        <div className="mt-10 pt-8 border-t border-gray-200/60">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start text-xs text-gray-500 font-sans">
-            {/* Left side: Company details */}
-            <div className="lg:col-span-12 space-y-3">
-              <h5 className="font-bold text-[#2A3A35] text-xs uppercase tracking-widest flex items-center gap-2">
-                <span className="w-1.5 h-3 bg-[#CB7037] rounded-xs inline-block" />
-                THÔNG TIN DOANH NGHIỆP & PHÁP LÝ
-              </h5>
-              <div className="space-y-1.5 text-gray-600 leading-relaxed text-left">
-                <p className="font-sans">
-                  <strong className="text-[#2A3A35]">Tên công ty:</strong> Công ty Cổ Phần Phát Triển Bất Động Sản Trường Phát Group
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
-                  <p>
-                    <strong className="text-[#2A3A35]">Mã số thuế (MST):</strong> <span className="font-mono text-[#2A3A35] font-bold bg-gray-100 px-1.5 py-0.5 rounded text-[11px] border border-gray-200">0901144166</span>
-                  </p>
-                  <p>
-                    <strong className="text-[#2A3A35]">Hóa đơn điện tử:</strong> Gửi bản XML & PDF về <a href="mailto:ketoan@truongphatgroup.com.vn" className="text-[#CB7037] hover:underline font-semibold font-mono">ketoan@truongphatgroup.com.vn</a>
-                  </p>
-                </div>
-                <p>
-                  <strong className="text-[#2A3A35]">Địa chỉ:</strong> Căn biệt thự SB-72, dự án Vinhomes Ocean Park 2 - The Empire, Xã Long Hưng, Huyện Văn Giang, Tỉnh Hưng Yên, Việt Nam
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
